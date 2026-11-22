@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tip Before or After Tax | Tip Calculator</title>
+<meta name="description" content="Most guides suggest tipping on the pre-tax amount, because tax is not part of the service, and the difference is small but real.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;line-height:1.65;color:#1f2937;background:#f9fafb;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:#ea580c}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+header.site{ background:#ea580c;color:#fff; }
+.header-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;padding:14px 16px;max-width:1080px;margin:0 auto}
+.logo{font-size:clamp(1.25rem,4vw,1.6rem);font-weight:800;color:#fff;text-decoration:none}
+.logo span{color:#0d9488}
+nav.main{display:flex;flex-wrap:wrap;gap:4px}
+nav.main a{color:#fff;text-decoration:none;font-weight:600;padding:10px 12px;border-radius:8px;font-size:.95rem;min-height:44px;display:inline-flex;align-items:center}
+nav.main a:hover{background:rgba(0,0,0,.06)}
+.hero{ background:linear-gradient(120deg,#fff7ed,#ffedd5);color:#7c2d12; padding:clamp(28px,6vw,56px) 16px}
+.hero-in{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:start}
+.hero h1{font-size:clamp(1.7rem,5vw,2.6rem);line-height:1.15;margin-bottom:12px}
+.hero p.lead{font-size:clamp(1rem,2.5vw,1.2rem);opacity:.95;margin-bottom:16px}
+.toolcard{background:#fff;color:#1f2937;border-radius:22px;box-shadow:0 4px 16px rgba(0,0,0,.09);padding:20px}
+.toolcard h2{font-size:1.25rem;margin-bottom:12px;color:#9a3412}
+label{display:block;font-weight:600;margin:12px 0 4px;font-size:.95rem}
+input,select{width:100%;padding:12px 14px;font-size:1rem;border:1px solid #d1d5db;border-radius:8px;min-height:48px;background:#fff}
+input:focus,select:focus{outline:3px solid #ffedd5;border-color:#ea580c}
+button.calc{width:100%;margin-top:16px;padding:14px;background:#ea580c;color:#fff;border:none;border-radius:22px;font-size:1.05rem;font-weight:700;cursor:pointer;min-height:48px}
+button.calc:hover{background:#9a3412}
+.result{margin-top:16px;background:#ffedd5;border-left:5px solid #ea580c;padding:14px;border-radius:8px;font-size:1.05rem}
+.result b{font-size:1.3rem;color:#9a3412}
+section.block{max-width:1080px;margin:0 auto;padding:clamp(24px,5vw,44px) 16px}
+section.block h2{font-size:clamp(1.35rem,4vw,1.9rem);color:#9a3412;margin-bottom:14px}
+section.block h3{font-size:1.15rem;color:#9a3412;margin:18px 0 8px}
+section.block p{margin-bottom:12px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:#fff;border-radius:22px;box-shadow:0 4px 16px rgba(0,0,0,.09);padding:18px;text-decoration:none;color:#1f2937;display:block;border:1px solid #e5e7eb}
+.card h3{color:#9a3412;margin-bottom:6px;font-size:1.05rem}
+.card p{font-size:.95rem;color:#4b5563}
+.guide-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.gcard{background:#fff;border-radius:22px;box-shadow:0 4px 16px rgba(0,0,0,.09);overflow:hidden;text-decoration:none;color:#1f2937;display:block;border:1px solid #e5e7eb}
+.gcard img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.gcard .gbody{padding:14px}
+.gcard h3{font-size:1rem;color:#9a3412;line-height:1.35;margin-bottom:6px}
+.gcard p{font-size:.88rem;color:#4b5563}
+.faq details{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.faq summary{font-weight:700;cursor:pointer;color:#9a3412;min-height:44px;display:flex;align-items:center}
+.faq p{margin-top:8px}
+article.guide{max-width:760px;margin:0 auto;padding:clamp(24px,5vw,40px) 16px;background:#fff}
+article.guide h1{font-size:clamp(1.6rem,5vw,2.3rem);line-height:1.2;color:#9a3412;margin-bottom:10px}
+article.guide h2{font-size:clamp(1.25rem,3.5vw,1.6rem);color:#9a3412;margin:26px 0 10px}
+article.guide p,article.guide li{margin-bottom:10px}
+article.guide ul,article.guide ol{margin:0 0 14px 22px}
+.tipbox{background:#ffedd5;border-left:5px solid #0d9488;padding:14px 16px;border-radius:8px;margin:20px 0}
+.tipbox b{color:#9a3412}
+.faqbox details{border:1px solid #e5e7eb;border-radius:10px;padding:12px 16px;margin-bottom:10px}
+.faqbox summary{font-weight:700;cursor:pointer;color:#9a3412}
+.related{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.related a{background:#ffedd5;padding:10px 14px;border-radius:999px;text-decoration:none;font-weight:600;font-size:.92rem;min-height:44px;display:inline-flex;align-items:center}
+footer.site{background:#9a3412;color:#fff;padding:32px 16px;margin-top:20px}
+footer.site a{color:#fff}
+footer.site .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+footer.site h4{margin-bottom:10px}
+footer.site ul{list-style:none}
+footer.site li{margin-bottom:6px}
+footer.site a{text-decoration:none}
+footer.site a:hover{text-decoration:underline}
+.browseall{display:inline-block;margin-top:18px;background:#ea580c;color:#fff;padding:12px 22px;border-radius:22px;text-decoration:none;font-weight:700;min-height:48px}
+@media (max-width:900px){.cards,.guide-grid{grid-template-columns:repeat(2,1fr)}.hero-in{grid-template-columns:1fr}}
+@media (max-width:640px){.cards,.guide-grid{grid-template-columns:1fr 1fr;gap:12px}footer.site .wrap{grid-template-columns:1fr 1fr}nav.main a{padding:10px 8px;font-size:.9rem}}
+@media (max-width:480px){.cards,.guide-grid{grid-template-columns:1fr}footer.site .wrap{grid-template-columns:1fr}.header-in{flex-direction:column;align-items:flex-start}body{font-size:16px}}
+</style>
+</head>
+<body>
+<header class="site"><div class="header-in">
+<a class="logo" href="/">Tip<span>Calculator</span></a>
+<nav class="main"><a href="/">Home</a><a href="/tools/tip-calculator.html">Tip Calculator</a><a href="/tools/split-bill-calculator.html">Split Bill Calculator</a><a href="/tools/tip-by-service-quality.html">Tip by Service Quality</a><a href="/tools/total-per-person.html">Total Per Person Calculator</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></nav>
+</div></header>
+<article class="guide"><h1>Tip Before or After Tax</h1><p><img src="/images/tip-before-or-after-tax.jpg" alt="Tip Before or After Tax" style="border-radius:12px;margin-bottom:14px"></p><p>Most guides suggest tipping on the pre-tax amount, because tax is not part of the service, and the difference is small but real. This guide explains tip before or after tax in plain language, shows the maths with a real worked example, and points out the mistakes people make most often. You can follow along with the tip calculator on this site, and by the end you will be able to check any result by hand and use the calculator with confidence.</p>
+<h2>How it works</h2>
+<p>There are two parts to tip before or after tax: getting the inputs right and reading the output honestly. The inputs are your responsibility, and they deserve a minute of care, because a calculator will happily produce a precise-looking answer from a careless guess. The output is the calculator's job, and it is worth reading the whole output, not just the biggest number. The extra figures, such as the total interest or the amount saved, often tell you more than the headline result.</p>
+<p>A good way to build confidence is to try the calculation twice with slightly different numbers and watch how the answer moves. If a small change in one input causes a huge change in the answer, that input deserves extra care. If the answer barely moves, you can relax about it. This kind of sensitivity check takes a minute and turns a calculator from a black box into a tool you actually understand.</p>
+<h2>Worked example</h2>
+<p>Take a worked example. A bill of 11 with a tip of 18 percent gives a tip of 19.8, because 11 times 18 divided by one hundred is 19.8. The total to pay is 129.8. If 1 person pays, each person pays 129.8, which includes a tip share of 19.8. Rounding the tip up to the next whole number would make the tip 2 and the total 13, a difference of only 0.2, which is why rounding up is a painless way to be a little more generous without any extra maths.</p>
+<h2>Common mistakes</h2>
+<p>Watch out for three traps. First, a guessed input is not a measured one, and the answer is only as honest as the guess. Second, a single result is a snapshot, not a trend, so one reading should never drive a big decision on its own. Third, averages hide variation, so a result that looks fine on average may still be wrong for your particular case.</p>
+<ul><li>Entering numbers in the wrong units or the wrong order.</li><li>Rounding in the middle of the calculation instead of at the end.</li><li>Trusting the first result without a rough check against common sense.</li></ul>
+<h2>Practical tips</h2>
+<p>A few habits make the tool far more useful. Measure rather than guess, write the numbers down before typing them in, and run the calculation twice with the same inputs to catch slips. Keep a note of the result and the date so you can compare it next time, and re-check whenever something changes, such as a new rate or a different amount. Small, regular checks beat one big calculation every time.</p>
+<div class="tipbox"><b>Tip:</b> change one input at a time and watch how the answer moves. That shows you which number matters most and where extra care pays off.</div>
+<h2>Before tax or after tax</h2>
+<p>Tipping before tax is the common advice, because tax is money the restaurant passes on to the government and not part of the service you received. On a bill of 100 with 10 percent tax, tipping 20 percent before tax gives a tip of 20, while tipping on the total of 110 gives 22. The difference is small on one meal, but it adds up over many meals out.</p>
+<p>In practice, many people tip on the total simply because it is easier, and that is a reasonable choice too. The difference between the two methods is usually a small amount, and a server will appreciate either. The useful habit is to pick one method and use it consistently, so you are never doing mental arithmetic at the table.</p>
+<h2>Frequently asked questions</h2>
+<div class="faqbox">
+<details><summary>Can I trust a single result?</summary><p>A single result is a snapshot. It is useful, but big decisions deserve more than one reading: try different inputs, check the trend over time, and compare with a second source when the stakes are high.</p></details>
+<details><summary>What should I do if the answer looks wrong?</summary><p>First re-read every input and check the units. Then try a rough estimate by hand. If the calculator still disagrees with your estimate, the input is almost always the problem, so correct it and calculate again.</p></details>
+<details><summary>Does this site store my numbers?</summary><p>No. The calculations happen in your browser and your numbers are not sent to us or stored on any server. Closing the page removes them.</p></details>
+</div><h2>Related guides</h2><div class="related"><a href="/guides/tip-mistakes.html">Common Tipping Mistakes</a><a href="/guides/tip-for-hair-salon.html">Tipping at the Hair Salon</a><a href="/guides/tip-rounding.html">Rounding Tips: Simple Rules</a></div><p style="margin-top:20px"><a href="/">Back to the Tip Calculator home page</a> | <a href="/tools/tip-calculator.html">Use the Tip Calculator</a></p></article><footer class="site"><div class="wrap">
+<div><h4>Tip Calculator</h4><p>Fair tips and split bills, worked out instantly. Free tools and plain guides, no sign-up needed.</p></div>
+<div><h4>Tools</h4><ul><li><a href="/tools/tip-calculator.html">Tip Calculator</a></li><li><a href="/tools/split-bill-calculator.html">Split Bill Calculator</a></li><li><a href="/tools/tip-by-service-quality.html">Tip by Service Quality</a></li><li><a href="/tools/total-per-person.html">Total Per Person Calculator</a></li></ul></div>
+<div><h4>Popular guides</h4><ul><li><a href="/guides/how-much-to-tip.html">How Much Should You Tip</a></li><li><a href="/guides/tip-by-service-quality.html">Tipping by Service Quality</a></li><li><a href="/guides/split-bill-guide.html">How to Split a Bill Fairly</a></li><li><a href="/guides/tip-calculator-how-to-use.html">How to Use a Tip Calculator</a></li><li><a href="/guides/tipping-around-the-world.html">Tipping Customs Around the World</a></li><li><a href="/guides/tip-on-takeaway.html">Should You Tip on Takeaway</a></li></ul></div>
+</div><div class="wrap" style="margin-top:20px;border-top:1px solid rgba(255,255,255,.25);padding-top:16px">
+<p><a href="/about.html">About</a> | <a href="/contact.html">Contact</a> | <a href="/privacy.html">Privacy Policy</a> | <a href="/disclaimer.html">Disclaimer</a></p>
+<p style="margin-top:8px;font-size:.9rem">Results are estimates for general information only.</p>
+</div></footer>
+</body>
+</html>
